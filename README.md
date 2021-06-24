@@ -1,3 +1,3 @@
-# demo_javascript
+# javascript-study
 
-javaScript 代码演示仓库
+JS 学习仓库
