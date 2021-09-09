@@ -24,40 +24,41 @@ let obj = {
   },
   c: [1, "22", 33],
 };
-// function simpleClone(newObj) {
-//   let _obj = {};
-//   for (const key in newObj) {
-//     _obj[key] = newObj[key];
-//   }
-//   return _obj;
-// }
-// let objCopy = simpleClone(obj);
-// objCopy.b.b1 = "222";
-// console.log(obj.b.b1, objCopy.b.b1); //222
 
-// let objCopy = Object.create(obj); // 通过create创建的对象objCope值放在__proto__上面，也是浅拷贝
+function simpleClone(newObj) {
+  let _obj = {};
+  for (const key in newObj) {
+    _obj[key] = newObj[key];
+  }
+  return _obj;
+}
+let objCopy = simpleClone(obj);
+objCopy.b.b1 = "222";
+console.log(obj.b.b1, objCopy.b.b1); //222
+
+let objCopy = Object.create(obj); // 通过create创建的对象objCope值放在__proto__上面，也是浅拷贝
 
 // 深拷贝
 // 还是通过遍历 只是下面有Object引用类型在递归遍历，直到不是Object为止
-// function deepClone(startObj, endObj) {
-//   let _obj = endObj || {};
-//   for (const key in startObj) {
-//     if (typeof startObj[key] === "object") {
-//       // 是 数组或者对象
-//       _obj[key] =
-//         Object.prototype.toString.call(startObj[key]).slice(8, -1) === "Object"
-//           ? {}
-//           : [];
-//       deepClone(startObj[key], _obj[key]);
-//     } else {
-//       _obj[key] = startObj[key];
-//     }
-//   }
-//   return _obj;
-// }
-// let objDeepCopy = deepClone(obj);
-// objDeepCopy.b.b1 = "222";
-// console.log(objDeepCopy.b.b1, obj.b.b1); // 222 , b1
+function deepClone(startObj, endObj) {
+  let _obj = endObj || {};
+  for (const key in startObj) {
+    if (typeof startObj[key] === "object") {
+      // 是 数组或者对象
+      _obj[key] =
+        Object.prototype.toString.call(startObj[key]).slice(8, -1) === "Object"
+          ? {}
+          : [];
+      deepClone(startObj[key], _obj[key]);
+    } else {
+      _obj[key] = startObj[key];
+    }
+  }
+  return _obj;
+}
+let objDeepCopy = deepClone(obj);
+objDeepCopy.b.b1 = "222";
+console.log(objDeepCopy.b.b1, obj.b.b1); // 222 , b1
 
 // JSON.parse() JSON.stringify() 实现深拷贝
 // 先把 Object ->String -> Object  String类型存储在栈里面，Object存储在堆里面

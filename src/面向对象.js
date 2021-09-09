@@ -27,13 +27,14 @@ let s1 = new Student("张三", 30);
 
 s1.say(); //调用父类上的say方法，打印hello
 
-// Person.prototype.childSay = function () {
-// console.log("child say");
-// }; // 实例化后绑定在实例化对象的__proto__上面
+// 实例化后绑定在实例化对象的__proto__上面
+Person.prototype.childSay = function () {
+  console.log("child say");
+};
 
-// let p1 = new Person("张三");
-// p1.say = function () {
-//   console.log("child say");
-// };
-// p1.prototype.constructor = {};
-// console.log(Object.prototype.isPrototypeOf());
+let p1 = new Person("张三");
+p1.say = function () {
+  console.log("child say");
+};
+p1.prototype.constructor = {};
+console.log(Object.prototype.isPrototypeOf());

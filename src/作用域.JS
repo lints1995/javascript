@@ -22,7 +22,7 @@ function bind() {
     // 方法二 使用匿名函数立即执行保留这个i的值
     (function (num) {
       buttons[i].func = function () {
-        // console.log(num);
+        console.log(num);
       };
     })(i);
   }

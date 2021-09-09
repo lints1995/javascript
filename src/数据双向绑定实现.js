@@ -27,27 +27,27 @@ function handleAdd() {
 }
 
 // proxy 版
-// var _data = {
-//   test: 0,
-// };
-// function defineReactive(data) {
-//   return new Proxy(data, {
-//     get(target, key) {
-//       console.log("get-->", target, key);
-//       return target[key];
-//     },
-//     set(target, key, val) {
-//       if (target[key] !== val) {
-//         console.log("set-->", target, key, val);
-//         let odiv = document.getElementById("odiv");
-//         odiv.innerText = val;
-//         target[key] = val;
-//       }
-//     },
-//   });
-// }
-// // 能够直接监控一个对象的变化
-// let data = defineReactive(_data);
-// function handleAdd() {
-//   data.test = ++data.test;
-// }
+var _data = {
+  test: 0,
+};
+function proxyDefineReactive(data) {
+  return new Proxy(data, {
+    get(target, key) {
+      console.log("get-->", target, key);
+      return target[key];
+    },
+    set(target, key, val) {
+      if (target[key] !== val) {
+        console.log("set-->", target, key, val);
+        let odiv = document.getElementById("odiv");
+        odiv.innerText = val;
+        target[key] = val;
+      }
+    },
+  });
+}
+// 能够直接监控一个对象的变化
+let data = proxyDefineReactive(_data);
+function handleAdd() {
+  data.test = ++data.test;
+}
