@@ -27,4 +27,14 @@ var reverse = function (x) {
   return x <= -range || x >= range - 1 ? 0 : `${d}${x}`;
 };
 
-console.log(reverse(1534236469));
+// 参考
+var reverseReference = function (x) {
+  let res = 0;
+  while (x) {
+    res = res * 10 + (x % 10);
+    if (res > Math.pow(2, 31) - 1 || res < Math.pow(-2, 31)) return 0;
+    x = ~~(x / 10);
+  }
+  return res;
+};
+console.log(reverseReference(1534236469));
