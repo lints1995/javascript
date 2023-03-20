@@ -25,6 +25,13 @@ const StrategyType = {
   S4
 };
 console.log(StrategyType);
+// 输出结果
+// {
+//     S1: [Function: S1],
+//     S2: [Function: S2],
+//     S3: [Function: S3],
+//     S4: [Function: S4]
+// }
 // 根据策略不同实用不同策略
 const getStrategy = function (s) {
   return StrategyType[s] ? StrategyType[s] : false;
@@ -33,3 +40,8 @@ StrategyType["S1"](11);
 StrategyType["S2"](22);
 StrategyType["S3"](33);
 StrategyType["S4"](44);
+// 输出结果
+// 我是策略S1--》11
+// 我是策略S2--》22
+// 我是策略S3--》33
+// 我是策略S4--》44
